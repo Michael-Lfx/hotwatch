@@ -1,0 +1,6 @@
+{
+  "name": "Hotwatch",
+  "tagline": "A watched file never boils.",
+  "body": "*hotwatch* is a Rust library for conveniently watching and handling file changes.",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
