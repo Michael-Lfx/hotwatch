@@ -213,6 +213,11 @@
 <span id="169">169</span>
 <span id="170">170</span>
 <span id="171">171</span>
+<span id="172">172</span>
+<span id="173">173</span>
+<span id="174">174</span>
+<span id="175">175</span>
+<span id="176">176</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! hotwatch is a Rust library for conveniently watching and handling file changes.</span>
 <span class='doccomment'>//!</span>
@@ -337,6 +342,11 @@
     <span class='doccomment'>///</span>
     <span class='doccomment'>/// Note that handlers will be run in hotwatch&#39;s watch thread, so you&#39;ll have to use `move`</span>
     <span class='doccomment'>/// if the closure captures anything.</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// # Errors</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// Watching will fail if the path can&#39;t be read, thus returning</span>
+    <span class='doccomment'>/// a `hotwatch::Error::Io(std::io::Error)`.</span>
     <span class='doccomment'>///</span>
     <span class='doccomment'>/// # Examples</span>
     <span class='doccomment'>///</span>
