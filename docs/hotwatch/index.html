@@ -47,8 +47,15 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-0' class='srclink' href='../src/hotwatch/src/lib.rs.html#1-163' title='goto source code'>[src]</a></span></h1>
-<h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+               </span><a id='src-0' class='srclink' href='../src/hotwatch/src/lib.rs.html#1-171' title='goto source code'>[src]</a></span></h1>
+<div class='docblock'><p>hotwatch is a Rust library for conveniently watching and handling file changes.</p>
+
+<p>Watching is done on a separate thread to avoid blocking your enjoyment of life.
+All handlers are run on that thread as well, so keep that in mind when attempting to access
+outside data from within a handler.</p>
+
+<p>Nightly Rust is required, as hotwatch uses the box keyword internally.</p>
+</div><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
 <table>
                        <tr class=' module-item'>
                            <td><a class='struct' href='struct.Event.html'

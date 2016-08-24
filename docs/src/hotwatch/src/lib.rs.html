@@ -205,7 +205,23 @@
 <span id="161">161</span>
 <span id="162">162</span>
 <span id="163">163</span>
+<span id="164">164</span>
+<span id="165">165</span>
+<span id="166">166</span>
+<span id="167">167</span>
+<span id="168">168</span>
+<span id="169">169</span>
+<span id="170">170</span>
+<span id="171">171</span>
 </pre><pre class='rust '>
+<span class='doccomment'>//! hotwatch is a Rust library for conveniently watching and handling file changes.</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! Watching is done on a separate thread to avoid blocking your enjoyment of life.</span>
+<span class='doccomment'>//! All handlers are run on that thread as well, so keep that in mind when attempting to access</span>
+<span class='doccomment'>//! outside data from within a handler.</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! Nightly Rust is required, as hotwatch uses the box keyword internally.</span>
+
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>box_syntax</span>)]</span>
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>cfg_attr</span>(<span class='ident'>feature</span><span class='op'>=</span><span class='string'>&quot;clippy&quot;</span>, <span class='ident'>feature</span>(<span class='ident'>plugin</span>))]</span>
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>cfg_attr</span>(<span class='ident'>feature</span><span class='op'>=</span><span class='string'>&quot;clippy&quot;</span>, <span class='ident'>plugin</span>(<span class='ident'>clippy</span>))]</span>
