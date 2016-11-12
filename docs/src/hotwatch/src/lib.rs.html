@@ -355,9 +355,9 @@
     <span class='doccomment'>///</span>
     <span class='doccomment'>/// let mut hotwatch = Hotwatch::new().expect(&quot;Hotwatch failed to initialize.&quot;);</span>
     <span class='doccomment'>/// hotwatch.watch(&quot;README.md&quot;, |e: hotwatch::Event| {</span>
-    <span class='doccomment'>///   if e.changed() {</span>
-    <span class='doccomment'>///     println!(&quot;{} changed!&quot;, e.path);</span>
-    <span class='doccomment'>///   }</span>
+    <span class='doccomment'>///     if e.changed() {</span>
+    <span class='doccomment'>///         println!(&quot;{} changed!&quot;, e.path);</span>
+    <span class='doccomment'>///     }</span>
     <span class='doccomment'>/// }).expect(&quot;Failed to watch file!&quot;);</span>
     <span class='doccomment'>/// ```</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>watch</span><span class='op'>&lt;</span><span class='ident'>F</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>path</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>, <span class='ident'>handler</span>: <span class='ident'>F</span>) <span class='op'>-&gt;</span> <span class='ident'>HotwatchResult</span><span class='op'>&lt;</span>()<span class='op'>&gt;</span>
@@ -452,11 +452,9 @@
     <script>
         window.rootPath = "../../../";
         window.currentCrate = "hotwatch";
-        window.playgroundUrl = "";
     </script>
     <script src="../../../jquery.js"></script>
     <script src="../../../main.js"></script>
-    
     <script defer src="../../../search-index.js"></script>
 </body>
 </html>

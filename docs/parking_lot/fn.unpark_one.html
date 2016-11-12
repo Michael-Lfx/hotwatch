@@ -47,7 +47,7 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-434' class='srclink' href='../src/parking_lot/parking_lot.rs.html#521-526' title='goto source code'>[src]</a></span></h1>
+               </span><a id='src-306' class='srclink' href='../src/parking_lot/parking_lot.rs.html#521-526' title='goto source code'>[src]</a></span></h1>
 <pre class='rust fn'>pub unsafe fn unpark_one&lt;C&gt;(key: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>, callback: C) -&gt; <a class='enum' href='../parking_lot/enum.UnparkResult.html' title='parking_lot::UnparkResult'>UnparkResult</a> <span class='where'>where C: <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.FnOnce.html' title='core::ops::FnOnce'>FnOnce</a>(<a class='enum' href='../parking_lot/enum.UnparkResult.html' title='parking_lot::UnparkResult'>UnparkResult</a>)</span></pre><div class='docblock'><p>Unparks one thread from the queue associated with the given key.</p>
 
 <p>The <code>callback</code> function is called while the queue is locked and before the
@@ -118,11 +118,9 @@ panic or call into any function in <code>parking_lot</code>.</p>
     <script>
         window.rootPath = "../";
         window.currentCrate = "parking_lot";
-        window.playgroundUrl = "";
     </script>
     <script src="../jquery.js"></script>
     <script src="../main.js"></script>
-    
     <script defer src="../search-index.js"></script>
 </body>
 </html>

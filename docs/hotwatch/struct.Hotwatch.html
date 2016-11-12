@@ -47,11 +47,9 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-67' class='srclink' href='../src/hotwatch/src/lib.rs.html#87-90' title='goto source code'>[src]</a></span></h1>
-<pre class='rust struct'>pub struct Hotwatch {
-    // some fields omitted
-}</pre><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='struct' href='../hotwatch/struct.Hotwatch.html' title='hotwatch::Hotwatch'>Hotwatch</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-70' class='srclink' href='../src/hotwatch/src/lib.rs.html#92-176' title='goto source code'>[src]</a></span></h3>
-<div class='impl-items'><h4 id='method.new' class='method'><span id='new.v' class='invisible'><code>fn <a href='#method.new' class='fnname'>new</a>() -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;Self,&nbsp;<a class='enum' href='../hotwatch/enum.Error.html' title='hotwatch::Error'>Error</a>&gt;</code></span></h4>
+               </span><a id='src-41' class='srclink' href='../src/hotwatch/src/lib.rs.html#87-90' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct Hotwatch { /* fields omitted */ }</pre><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='struct' href='../hotwatch/struct.Hotwatch.html' title='hotwatch::Hotwatch'>Hotwatch</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-44' class='srclink' href='../src/hotwatch/src/lib.rs.html#92-176' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.new' class='method'><span id='new.v' class='invisible'><code>fn <a href='#method.new' class='fnname'>new</a>() -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;Self, <a class='enum' href='../hotwatch/enum.Error.html' title='hotwatch::Error'>Error</a>&gt;</code></span></h4>
 <div class='docblock'><p>Creates a new hotwatch instance.</p>
 
 <h1 id='errors' class='section-header'><a href='#errors'>Errors</a></h1>
@@ -64,7 +62,7 @@ type; hotwatch doesn&#39;t perfectly encapsulate this.</p>
 <span class='kw'>use</span> <span class='ident'>hotwatch</span>::<span class='ident'>Hotwatch</span>;
 
 <span class='kw'>let</span> <span class='ident'>hotwatch</span> <span class='op'>=</span> <span class='ident'>Hotwatch</span>::<span class='ident'>new</span>().<span class='ident'>expect</span>(<span class='string'>&quot;Hotwatch failed to initialize.&quot;</span>);</pre>
-</div><h4 id='method.watch' class='method'><span id='watch.v' class='invisible'><code>fn <a href='#method.watch' class='fnname'>watch</a>&lt;F&gt;(&amp;mut self, path: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, handler: F) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>,&nbsp;<a class='enum' href='../hotwatch/enum.Error.html' title='hotwatch::Error'>Error</a>&gt; <span class='where'>where F: 'static + <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Fn.html' title='core::ops::Fn'>Fn</a>(<a class='struct' href='../hotwatch/struct.Event.html' title='hotwatch::Event'>Event</a>) + <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a></span></code></span></h4>
+</div><h4 id='method.watch' class='method'><span id='watch.v' class='invisible'><code>fn <a href='#method.watch' class='fnname'>watch</a>&lt;F&gt;(&amp;mut self, path: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, handler: F) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='enum' href='../hotwatch/enum.Error.html' title='hotwatch::Error'>Error</a>&gt; <span class='where'>where F: 'static + <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Fn.html' title='core::ops::Fn'>Fn</a>(<a class='struct' href='../hotwatch/struct.Event.html' title='hotwatch::Event'>Event</a>) + <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a></span></code></span></h4>
 <div class='docblock'><p>Watch a path and register a handler to it.</p>
 
 <p>Note that handlers will be run in hotwatch&#39;s watch thread, so you&#39;ll have to use <code>move</code>
@@ -80,9 +78,9 @@ a <code>hotwatch::Error::Io(std::io::Error)</code>.</p>
 
 <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>hotwatch</span> <span class='op'>=</span> <span class='ident'>Hotwatch</span>::<span class='ident'>new</span>().<span class='ident'>expect</span>(<span class='string'>&quot;Hotwatch failed to initialize.&quot;</span>);
 <span class='ident'>hotwatch</span>.<span class='ident'>watch</span>(<span class='string'>&quot;README.md&quot;</span>, <span class='op'>|</span><span class='ident'>e</span>: <span class='ident'>hotwatch</span>::<span class='ident'>Event</span><span class='op'>|</span> {
-  <span class='kw'>if</span> <span class='ident'>e</span>.<span class='ident'>changed</span>() {
-    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{} changed!&quot;</span>, <span class='ident'>e</span>.<span class='ident'>path</span>);
-  }
+    <span class='kw'>if</span> <span class='ident'>e</span>.<span class='ident'>changed</span>() {
+        <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{} changed!&quot;</span>, <span class='ident'>e</span>.<span class='ident'>path</span>);
+    }
 }).<span class='ident'>expect</span>(<span class='string'>&quot;Failed to watch file!&quot;</span>);</pre>
 </div></div></section>
     <section id='search' class="content hidden"></section>
@@ -140,11 +138,9 @@ a <code>hotwatch::Error::Io(std::io::Error)</code>.</p>
     <script>
         window.rootPath = "../";
         window.currentCrate = "hotwatch";
-        window.playgroundUrl = "";
     </script>
     <script src="../jquery.js"></script>
     <script src="../main.js"></script>
-    
     <script defer src="../search-index.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 (function() {var implementors = {};
-implementors["smallvec"] = [];
+implementors["smallvec"] = [];implementors["parking_lot"] = [];
 
             if (window.register_implementors) {
                 window.register_implementors(implementors);
