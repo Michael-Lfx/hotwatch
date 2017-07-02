@@ -192,8 +192,17 @@
 <span id="147">147</span>
 <span id="148">148</span>
 <span id="149">149</span>
+<span id="150">150</span>
+<span id="151">151</span>
+<span id="152">152</span>
+<span id="153">153</span>
+<span id="154">154</span>
+<span id="155">155</span>
+<span id="156">156</span>
+<span id="157">157</span>
 </pre><pre class="rust ">
-<span class="doccomment">//! hotwatch is a Rust library for conveniently watching and handling file changes.</span>
+<span class="doccomment">//! hotwatch is a Rust library for comfortably watching and handling file changes. </span>
+<span class="doccomment">//! It&#39;s a thin convenience wrapper over [notify](https://github.com/passcod/notify), allowing you to easily spawn handlers.</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! Watching is done on a separate thread to avoid blocking your enjoyment of life.</span>
 <span class="doccomment">//! All handlers are run on that thread as well, so keep that in mind when attempting to access</span>
@@ -275,6 +284,13 @@
     }
 
     <span class="doccomment">/// Watch a path and register a handler to it.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// When watching a directory, that handler will receive all events for all directory</span>
+    <span class="doccomment">/// contents, even recursiving through subdirectories.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Only the most specific applicable handler will be called. In other words, if you&#39;re</span>
+    <span class="doccomment">/// watching &quot;dir&quot; and &quot;dir/file1&quot;, then only the latter handler will fire for changes to</span>
+    <span class="doccomment">/// file1.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that handlers will be run in hotwatch&#39;s watch thread, so you&#39;ll have to use `move`</span>
     <span class="doccomment">/// if the closure captures anything.</span>
