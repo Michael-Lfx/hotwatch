@@ -1,5 +1,7 @@
 (function() {var implementors = {};
-implementors["net2"] = [];implementors["mio"] = [];
+implementors["hotwatch"] = [];
+implementors["mio"] = [];
+implementors["net2"] = [];
 
             if (window.register_implementors) {
                 window.register_implementors(implementors);

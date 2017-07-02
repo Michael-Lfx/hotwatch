@@ -1,5 +1,12 @@
 (function() {var implementors = {};
-implementors["libc"] = [];implementors["parking_lot"] = [];implementors["nix"] = [];implementors["mio"] = [];
+implementors["hotwatch"] = [];
+implementors["libc"] = [];
+implementors["mio"] = [];
+implementors["nix"] = [];
+implementors["owning_ref"] = [];
+implementors["parking_lot"] = [];
+implementors["parking_lot_core"] = [];
+implementors["rand"] = [];
 
             if (window.register_implementors) {
                 window.register_implementors(implementors);

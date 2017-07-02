@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["Error",""]],"struct":[["Event",""],["Hotwatch",""]]});
+initSidebarItems({"enum":[["Error",""],["Event","Event delivered when action occurs on a watched path in debounced mode"]],"struct":[["Hotwatch",""]]});

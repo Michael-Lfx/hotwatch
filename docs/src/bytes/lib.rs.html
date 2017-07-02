@@ -9,6 +9,7 @@
 
     <title>lib.rs.html -- source</title>
 
+    <link rel="stylesheet" type="text/css" href="../../normalize.css">
     <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../../main.css">
     
@@ -16,7 +17,7 @@
     
     
 </head>
-<body class="rustdoc">
+<body class="rustdoc source">
     <!--[if lte IE 8]>
     <div class="warning">
         This old browser is unsupported and will most likely display funky
@@ -42,7 +43,7 @@
         </form>
     </nav>
 
-    <section id='main' class="content source"><pre class="line-numbers"><span id="1"> 1</span>
+    <section id='main' class="content"><pre class="line-numbers"><span id="1"> 1</span>
 <span id="2"> 2</span>
 <span id="3"> 3</span>
 <span id="4"> 4</span>
@@ -96,60 +97,60 @@
 <span id="52">52</span>
 <span id="53">53</span>
 <span id="54">54</span>
-</pre><pre class='rust '>
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>crate_name</span> <span class='op'>=</span> <span class='string'>&quot;bytes&quot;</span>]</span>
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>deny</span>(<span class='ident'>warnings</span>)]</span>
+</pre><pre class="rust ">
+<span class="attribute">#<span class="op">!</span>[<span class="ident">crate_name</span> <span class="op">=</span> <span class="string">&quot;bytes&quot;</span>]</span>
+<span class="attribute">#<span class="op">!</span>[<span class="ident">deny</span>(<span class="ident">warnings</span>)]</span>
 
-<span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>alloc</span>;
-<span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>buf</span>;
-<span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>str</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">alloc</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">buf</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">str</span>;
 
-<span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>buf</span>::{
-    <span class='ident'>Buf</span>,
-    <span class='ident'>BufExt</span>,
-    <span class='ident'>MutBuf</span>,
-    <span class='ident'>MutBufExt</span>,
-    <span class='ident'>ByteBuf</span>,
-    <span class='ident'>MutByteBuf</span>,
-    <span class='ident'>RingBuf</span>,
-    <span class='ident'>ROByteBuf</span>,
-    <span class='ident'>SliceBuf</span>,
-    <span class='ident'>MutSliceBuf</span>,
-    <span class='ident'>Source</span>,
-    <span class='ident'>Sink</span>,
-    <span class='ident'>Take</span>,
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">buf</span>::{
+    <span class="ident">Buf</span>,
+    <span class="ident">BufExt</span>,
+    <span class="ident">MutBuf</span>,
+    <span class="ident">MutBufExt</span>,
+    <span class="ident">ByteBuf</span>,
+    <span class="ident">MutByteBuf</span>,
+    <span class="ident">RingBuf</span>,
+    <span class="ident">ROByteBuf</span>,
+    <span class="ident">SliceBuf</span>,
+    <span class="ident">MutSliceBuf</span>,
+    <span class="ident">Source</span>,
+    <span class="ident">Sink</span>,
+    <span class="ident">Take</span>,
 };
-<span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>str</span>::{
-    <span class='ident'>ByteStr</span>,
-    <span class='ident'>Bytes</span>,
-    <span class='ident'>Rope</span>,
-    <span class='ident'>RopeBuf</span>,
-    <span class='ident'>SeqByteStr</span>,
-    <span class='ident'>SmallByteStr</span>,
-    <span class='ident'>SmallByteStrBuf</span>,
-    <span class='ident'>ToBytes</span>,
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">str</span>::{
+    <span class="ident">ByteStr</span>,
+    <span class="ident">Bytes</span>,
+    <span class="ident">Rope</span>,
+    <span class="ident">RopeBuf</span>,
+    <span class="ident">SeqByteStr</span>,
+    <span class="ident">SmallByteStr</span>,
+    <span class="ident">SmallByteStrBuf</span>,
+    <span class="ident">ToBytes</span>,
 };
 
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>u32</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">u32</span>;
 
-<span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>traits</span> {
-    <span class='doccomment'>//! All traits are re-exported here to allow glob imports.</span>
-    <span class='kw'>pub</span> <span class='kw'>use</span> {<span class='ident'>Buf</span>, <span class='ident'>BufExt</span>, <span class='ident'>MutBuf</span>, <span class='ident'>MutBufExt</span>, <span class='ident'>ByteStr</span>, <span class='ident'>ToBytes</span>};
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">traits</span> {
+    <span class="doccomment">//! All traits are re-exported here to allow glob imports.</span>
+    <span class="kw">pub</span> <span class="kw">use</span> {<span class="ident">Buf</span>, <span class="ident">BufExt</span>, <span class="ident">MutBuf</span>, <span class="ident">MutBufExt</span>, <span class="ident">ByteStr</span>, <span class="ident">ToBytes</span>};
 }
 
-<span class='kw'>const</span> <span class='ident'>MAX_CAPACITY</span>: <span class='ident'>usize</span> <span class='op'>=</span> <span class='ident'>u32</span>::<span class='ident'>MAX</span> <span class='kw'>as</span> <span class='ident'>usize</span>;
+<span class="kw">const</span> <span class="ident">MAX_CAPACITY</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="ident">u32</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">usize</span>;
 
 
-<span class='comment'>/*
+<span class="comment">/*
  *
  * ===== BufError  =====
  *
  */</span>
 
-<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Copy</span>, <span class='ident'>Clone</span>, <span class='ident'>Debug</span>)]</span>
-<span class='kw'>pub</span> <span class='kw'>enum</span> <span class='ident'>BufError</span> {
-    <span class='ident'>Underflow</span>,
-    <span class='ident'>Overflow</span>,
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
+<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">BufError</span> {
+    <span class="ident">Underflow</span>,
+    <span class="ident">Overflow</span>,
 }
 </pre>
 </section>
@@ -209,7 +210,6 @@
         window.rootPath = "../../";
         window.currentCrate = "bytes";
     </script>
-    <script src="../../jquery.js"></script>
     <script src="../../main.js"></script>
     <script defer src="../../search-index.js"></script>
 </body>

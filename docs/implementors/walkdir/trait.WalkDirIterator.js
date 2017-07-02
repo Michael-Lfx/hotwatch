@@ -1,4 +1,5 @@
 (function() {var implementors = {};
+implementors["hotwatch"] = [];
 implementors["walkdir"] = [];
 
             if (window.register_implementors) {
