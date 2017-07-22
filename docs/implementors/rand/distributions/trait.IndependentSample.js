@@ -7,6 +7,7 @@ implementors["owning_ref"] = [];
 implementors["parking_lot"] = [];
 implementors["parking_lot_core"] = [];
 implementors["rand"] = [];
+implementors["syn"] = [];
 
             if (window.register_implementors) {
                 window.register_implementors(implementors);

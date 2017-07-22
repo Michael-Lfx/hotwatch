@@ -7,6 +7,7 @@ implementors["notify"] = ["impl <a class=\"trait\" href=\"https://doc.rust-lang.
 implementors["owning_ref"] = [];
 implementors["parking_lot"] = [];
 implementors["parking_lot_core"] = [];
+implementors["syn"] = [];
 
             if (window.register_implementors) {
                 window.register_implementors(implementors);

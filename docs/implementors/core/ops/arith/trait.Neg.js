@@ -6,6 +6,7 @@ implementors["nix"] = ["impl <a class=\"trait\" href=\"https://doc.rust-lang.org
 implementors["owning_ref"] = [];
 implementors["parking_lot"] = [];
 implementors["parking_lot_core"] = [];
+implementors["syn"] = [];
 implementors["time"] = ["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/ops/arith/trait.Neg.html\" title=\"trait core::ops::arith::Neg\">Neg</a> for <a class=\"struct\" href=\"time/struct.Duration.html\" title=\"struct time::Duration\">Duration</a>",];
 
             if (window.register_implementors) {
