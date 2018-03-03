@@ -1,6 +1,4 @@
 (function() {var implementors = {};
-implementors["hotwatch"] = [];
-implementors["mio"] = [];
 implementors["nix"] = [];
 
             if (window.register_implementors) {
