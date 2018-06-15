@@ -10,10 +10,11 @@
     <title>owning_ref - Rust</title>
 
     <link rel="stylesheet" type="text/css" href="../normalize.css">
-    <link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle">
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css"
+          id="mainThemeStyle">
     
     <link rel="stylesheet" type="text/css" href="../dark.css">
-    <link rel="stylesheet" type="text/css" href="../main.css" id="themeStyle">
+    <link rel="stylesheet" type="text/css" href="../light.css" id="themeStyle">
     <script src="../storage.js"></script>
     
 
@@ -54,13 +55,11 @@
         </form>
     </nav>
 
-    <section id='main' class="content">
-<h1 class='fqn'><span class='in-band'>Crate <a class="mod" href=''>owning_ref</a></span><span class='out-of-band'><span id='render-detail'>
+    <section id='main' class="content"><h1 class='fqn'><span class='in-band'>Crate <a class="mod" href=''>owning_ref</a></span><span class='out-of-band'><span id='render-detail'>
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a class='srclink' href='../src/owning_ref/lib.rs.html#1-1891' title='goto source code'>[src]</a></span></h1>
-<div class='docblock'><h1 id="an-owning-reference" class="section-header"><a href="#an-owning-reference">An owning reference.</a></h1>
+               </span><a class='srclink' href='../src/owning_ref/lib.rs.html#1-1891' title='goto source code'>[src]</a></span></h1><div class='docblock'><h1 id="an-owning-reference" class="section-header"><a href="#an-owning-reference">An owning reference.</a></h1>
 <p>This crate provides the <em>owning reference</em> types <code>OwningRef</code> and <code>OwningRefMut</code>
 that enables it to bundle a reference together with the owner of the data it points to.
 This allows moving and dropping of a <code>OwningRef</code> without needing to recreate the reference.</p>
@@ -133,7 +132,7 @@ See the documentation around <code>OwningHandle</code> for more details.</p>
             <span class="number">0</span> <span class="op">=&gt;</span> <span class="kw-2">&amp;</span><span class="ident">foo</span>.<span class="ident">x</span>,
             <span class="number">1</span> <span class="op">=&gt;</span> <span class="kw-2">&amp;</span><span class="ident">foo</span>.<span class="ident">y</span>,
             <span class="number">2</span> <span class="op">=&gt;</span> <span class="kw-2">&amp;</span><span class="ident">foo</span>.<span class="ident">z</span>,
-            _ <span class="op">=&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(),
+            <span class="kw">_</span> <span class="op">=&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(),
         }
     });
 

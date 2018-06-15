@@ -10,10 +10,11 @@
     <title>wrapper.rs.html -- source</title>
 
     <link rel="stylesheet" type="text/css" href="../../normalize.css">
-    <link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle">
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css"
+          id="mainThemeStyle">
     
     <link rel="stylesheet" type="text/css" href="../../dark.css">
-    <link rel="stylesheet" type="text/css" href="../../main.css" id="themeStyle">
+    <link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle">
     <script src="../../storage.js"></script>
     
 
@@ -384,7 +385,7 @@
 
         <span class="kw">match</span> <span class="ident">fd</span> {
             <span class="op">-</span><span class="number">1</span> <span class="op">=&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">io</span>::<span class="ident">Error</span>::<span class="ident">last_os_error</span>()),
-            _  <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">INotify</span> {
+            <span class="kw">_</span>  <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">INotify</span> {
                 <span class="ident">fd</span>    : <span class="ident">fd</span>,
                 <span class="ident">events</span>: <span class="ident">Vec</span>::<span class="ident">new</span>(),
             })
@@ -397,14 +398,14 @@
 
             <span class="ident">ffi</span>::<span class="ident">inotify_add_watch</span>(
                 <span class="self">self</span>.<span class="ident">fd</span>,
-                <span class="ident">c_str</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> _,
+                <span class="ident">c_str</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>,
                 <span class="ident">mask</span>
             )
         };
 
         <span class="kw">match</span> <span class="ident">wd</span> {
             <span class="op">-</span><span class="number">1</span> <span class="op">=&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">io</span>::<span class="ident">Error</span>::<span class="ident">last_os_error</span>()),
-            _  <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">wd</span>)
+            <span class="kw">_</span>  <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">wd</span>)
         }
     }
 
@@ -413,7 +414,7 @@
         <span class="kw">match</span> <span class="ident">result</span> {
             <span class="number">0</span>  <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(()),
             <span class="op">-</span><span class="number">1</span> <span class="op">=&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">io</span>::<span class="ident">Error</span>::<span class="ident">last_os_error</span>()),
-            _  <span class="op">=&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(
+            <span class="kw">_</span>  <span class="op">=&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(
                 <span class="string">&quot;unexpected return code from inotify_rm_watch ({})&quot;</span>, <span class="ident">result</span>)
         }
     }
@@ -468,7 +469,7 @@
                     <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">error</span>);
                 }
             },
-            _ <span class="op">=&gt;</span>
+            <span class="kw">_</span> <span class="op">=&gt;</span>
                 ()
         }
 
@@ -518,7 +519,7 @@
         <span class="self">self</span>.<span class="ident">fd</span> <span class="op">=</span> <span class="op">-</span><span class="number">1</span>;
         <span class="kw">match</span> <span class="ident">result</span> {
             <span class="number">0</span> <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(()),
-            _ <span class="op">=&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">io</span>::<span class="ident">Error</span>::<span class="ident">last_os_error</span>())
+            <span class="kw">_</span> <span class="op">=&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">io</span>::<span class="ident">Error</span>::<span class="ident">last_os_error</span>())
         }
     }
 }

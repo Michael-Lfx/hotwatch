@@ -10,10 +10,11 @@
     <title>hotwatch - Rust</title>
 
     <link rel="stylesheet" type="text/css" href="../normalize.css">
-    <link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle">
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css"
+          id="mainThemeStyle">
     
     <link rel="stylesheet" type="text/css" href="../dark.css">
-    <link rel="stylesheet" type="text/css" href="../main.css" id="themeStyle">
+    <link rel="stylesheet" type="text/css" href="../light.css" id="themeStyle">
     <script src="../storage.js"></script>
     
 
@@ -54,18 +55,17 @@
         </form>
     </nav>
 
-    <section id='main' class="content">
-<h1 class='fqn'><span class='in-band'>Crate <a class="mod" href=''>hotwatch</a></span><span class='out-of-band'><span id='render-detail'>
+    <section id='main' class="content"><h1 class='fqn'><span class='in-band'>Crate <a class="mod" href=''>hotwatch</a></span><span class='out-of-band'><span id='render-detail'>
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a class='srclink' href='../src/hotwatch/lib.rs.html#1-167' title='goto source code'>[src]</a></span></h1>
-<div class='docblock'><p>hotwatch is a Rust library for comfortably watching and handling file changes.
-It's a thin convenience wrapper over <a href="https://github.com/passcod/notify">notify</a>, allowing you to easily spawn handlers.</p>
+               </span><a class='srclink' href='../src/hotwatch/lib.rs.html#1-154' title='goto source code'>[src]</a></span></h1><div class='docblock'><p><code>hotwatch</code> is a Rust library for comfortably watching and handling file changes.
+It's a thin convenience wrapper over <a href="https://github.com/passcod/notify">notify</a>,
+allowing you to easily spawn handlers.</p>
 <p>Watching is done on a separate thread to avoid blocking your enjoyment of life.
 All handlers are run on that thread as well, so keep that in mind when attempting to access
 outside data from within a handler.</p>
-<p>Nightly Rust is required, as hotwatch uses the box keyword internally.</p>
+<p>At least Rust 1.24 is required, due to the requirements of <a href="https://github.com/Amanieu/parking_lot"><code>parking_lot</code></a>.</p>
 </div><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
 <table>
                        <tr class=' module-item'>

@@ -10,10 +10,11 @@
     <title>lib.rs.html -- source</title>
 
     <link rel="stylesheet" type="text/css" href="../../normalize.css">
-    <link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle">
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css"
+          id="mainThemeStyle">
     
     <link rel="stylesheet" type="text/css" href="../../dark.css">
-    <link rel="stylesheet" type="text/css" href="../../main.css" id="themeStyle">
+    <link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle">
     <script src="../../storage.js"></script>
     
 
@@ -208,38 +209,25 @@
 <span id="152">152</span>
 <span id="153">153</span>
 <span id="154">154</span>
-<span id="155">155</span>
-<span id="156">156</span>
-<span id="157">157</span>
-<span id="158">158</span>
-<span id="159">159</span>
-<span id="160">160</span>
-<span id="161">161</span>
-<span id="162">162</span>
-<span id="163">163</span>
-<span id="164">164</span>
-<span id="165">165</span>
-<span id="166">166</span>
-<span id="167">167</span>
 </pre><pre class="rust ">
-<span class="doccomment">//! hotwatch is a Rust library for comfortably watching and handling file changes.</span>
-<span class="doccomment">//! It&#39;s a thin convenience wrapper over [notify](https://github.com/passcod/notify), allowing you to easily spawn handlers.</span>
+<span class="doccomment">//! `hotwatch` is a Rust library for comfortably watching and handling file changes.</span>
+<span class="doccomment">//! It&#39;s a thin convenience wrapper over [notify](https://github.com/passcod/notify),</span>
+<span class="doccomment">//! allowing you to easily spawn handlers.</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! Watching is done on a separate thread to avoid blocking your enjoyment of life.</span>
 <span class="doccomment">//! All handlers are run on that thread as well, so keep that in mind when attempting to access</span>
 <span class="doccomment">//! outside data from within a handler.</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! Nightly Rust is required, as hotwatch uses the box keyword internally.</span>
-
-<span class="attribute">#![<span class="ident">feature</span>(<span class="ident">box_syntax</span>)]</span>
+<span class="doccomment">//! At least Rust 1.24 is required, due to the requirements of [`parking_lot`](https://github.com/Amanieu/parking_lot).</span>
 
 <span class="attribute">#[<span class="ident">macro_use</span>]</span> <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">derive_more</span>;
+<span class="attribute">#[<span class="ident">macro_use</span>]</span> <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">log</span>;
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">notify</span>;
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">parking_lot</span>;
 
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">collections</span>::<span class="ident">HashMap</span>;
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">path</span>::{<span class="ident">Path</span>, <span class="ident">PathBuf</span>};
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fs</span>::<span class="ident">canonicalize</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">path</span>::{<span class="ident">Path</span>, <span class="ident">PathBuf</span>};
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">sync</span>::<span class="ident">Arc</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">sync</span>::<span class="ident">mpsc</span>::{<span class="ident">channel</span>, <span class="ident">Receiver</span>};
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">time</span>::<span class="ident">Duration</span>;
@@ -251,21 +239,21 @@
 
 <span class="kw">fn</span> <span class="ident">path_from_event</span>(<span class="ident">e</span>: <span class="kw-2">&amp;</span><span class="ident">Event</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">PathBuf</span><span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">e</span> {
-        <span class="kw-2">&amp;</span><span class="ident">Event</span>::<span class="ident">NoticeWrite</span>(<span class="kw-2">ref</span> <span class="ident">p</span>) <span class="op">|</span>
-        <span class="kw-2">&amp;</span><span class="ident">Event</span>::<span class="ident">NoticeRemove</span>(<span class="kw-2">ref</span> <span class="ident">p</span>) <span class="op">|</span>
-        <span class="kw-2">&amp;</span><span class="ident">Event</span>::<span class="ident">Create</span>(<span class="kw-2">ref</span> <span class="ident">p</span>) <span class="op">|</span>
-        <span class="kw-2">&amp;</span><span class="ident">Event</span>::<span class="ident">Write</span>(<span class="kw-2">ref</span> <span class="ident">p</span>) <span class="op">|</span>
-        <span class="kw-2">&amp;</span><span class="ident">Event</span>::<span class="ident">Chmod</span>(<span class="kw-2">ref</span> <span class="ident">p</span>) <span class="op">|</span>
-        <span class="kw-2">&amp;</span><span class="ident">Event</span>::<span class="ident">Remove</span>(<span class="kw-2">ref</span> <span class="ident">p</span>) <span class="op">|</span>
-        <span class="kw-2">&amp;</span><span class="ident">Event</span>::<span class="ident">Rename</span>(<span class="kw-2">ref</span> <span class="ident">p</span>, _) <span class="op">=&gt;</span> <span class="prelude-val">Some</span>(<span class="ident">p</span>.<span class="ident">clone</span>()),
-        <span class="kw-2">&amp;</span>_ <span class="op">=&gt;</span> <span class="prelude-val">None</span>
+        <span class="kw-2">&amp;</span><span class="ident">Event</span>::<span class="ident">NoticeWrite</span>(<span class="kw-2">ref</span> <span class="ident">p</span>)
+        <span class="op">|</span> <span class="kw-2">&amp;</span><span class="ident">Event</span>::<span class="ident">NoticeRemove</span>(<span class="kw-2">ref</span> <span class="ident">p</span>)
+        <span class="op">|</span> <span class="kw-2">&amp;</span><span class="ident">Event</span>::<span class="ident">Create</span>(<span class="kw-2">ref</span> <span class="ident">p</span>)
+        <span class="op">|</span> <span class="kw-2">&amp;</span><span class="ident">Event</span>::<span class="ident">Write</span>(<span class="kw-2">ref</span> <span class="ident">p</span>)
+        <span class="op">|</span> <span class="kw-2">&amp;</span><span class="ident">Event</span>::<span class="ident">Chmod</span>(<span class="kw-2">ref</span> <span class="ident">p</span>)
+        <span class="op">|</span> <span class="kw-2">&amp;</span><span class="ident">Event</span>::<span class="ident">Remove</span>(<span class="kw-2">ref</span> <span class="ident">p</span>)
+        <span class="op">|</span> <span class="kw-2">&amp;</span><span class="ident">Event</span>::<span class="ident">Rename</span>(<span class="kw-2">ref</span> <span class="ident">p</span>, <span class="kw">_</span>) <span class="op">=&gt;</span> <span class="prelude-val">Some</span>(<span class="ident">p</span>.<span class="ident">clone</span>()),
+        <span class="kw-2">&amp;</span><span class="kw">_</span> <span class="op">=&gt;</span> <span class="prelude-val">None</span>,
     }
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">From</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Error</span> {
     <span class="ident">Io</span>(<span class="ident">std</span>::<span class="ident">io</span>::<span class="ident">Error</span>),
-    <span class="ident">Notify</span>(<span class="ident">notify</span>::<span class="ident">Error</span>)
+    <span class="ident">Notify</span>(<span class="ident">notify</span>::<span class="ident">Error</span>),
 }
 
 <span class="kw">type</span> <span class="ident">HotwatchResult</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">Error</span><span class="op">&gt;</span>;
@@ -283,7 +271,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Errors</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This function can fail if the underlying [notify](https://docs.rs/notify/4.0.1/notify/)</span>
+    <span class="doccomment">/// This function can fail if the underlying [notify](https://docs.rs/notify/4.0.3/notify/)</span>
     <span class="doccomment">/// instance fails to initialize. This will unfortunately expose you to notify&#39;s own error</span>
     <span class="doccomment">/// type; hotwatch doesn&#39;t perfectly encapsulate this.</span>
     <span class="doccomment">///</span>
@@ -296,24 +284,21 @@
     <span class="doccomment">/// ```</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-&gt;</span> <span class="ident">HotwatchResult</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="kw">let</span> (<span class="ident">tx</span>, <span class="ident">rx</span>) <span class="op">=</span> <span class="ident">channel</span>();
-        <span class="kw">let</span> <span class="ident">handler_map_mutex</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">new</span>(<span class="ident">Mutex</span>::<span class="ident">new</span>(<span class="ident">HashMap</span>::<span class="ident">new</span>()));
+        <span class="kw">let</span> <span class="ident">handler_map_mutex</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">HashMap</span><span class="op">&lt;</span><span class="kw">_</span>, <span class="kw">_</span><span class="op">&gt;&gt;</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Default</span>::<span class="ident">default</span>();
         <span class="ident">Hotwatch</span>::<span class="ident">run</span>(<span class="ident">handler_map_mutex</span>.<span class="ident">clone</span>(), <span class="ident">rx</span>);
         <span class="ident">Watcher</span>::<span class="ident">new</span>(<span class="ident">tx</span>, <span class="ident">Duration</span>::<span class="ident">from_secs</span>(<span class="number">2</span>))
             .<span class="ident">map_err</span>(<span class="ident">Error</span>::<span class="ident">Notify</span>)
-            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">watcher</span><span class="op">|</span> <span class="ident">Hotwatch</span> {
-                <span class="ident">watcher</span>: <span class="ident">watcher</span>,
-                <span class="ident">handler_map_mutex</span>: <span class="ident">handler_map_mutex</span>,
-            })
+            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">watcher</span><span class="op">|</span> <span class="ident">Hotwatch</span> { <span class="ident">watcher</span>, <span class="ident">handler_map_mutex</span> })
     }
 
     <span class="doccomment">/// Watch a path and register a handler to it.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// When watching a directory, that handler will receive all events for all directory</span>
-    <span class="doccomment">/// contents, even recursiving through subdirectories.</span>
+    <span class="doccomment">/// contents, even recursing through subdirectories.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Only the most specific applicable handler will be called. In other words, if you&#39;re</span>
     <span class="doccomment">/// watching &quot;dir&quot; and &quot;dir/file1&quot;, then only the latter handler will fire for changes to</span>
-    <span class="doccomment">/// file1.</span>
+    <span class="doccomment">/// `file1`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that handlers will be run in hotwatch&#39;s watch thread, so you&#39;ll have to use `move`</span>
     <span class="doccomment">/// if the closure captures anything.</span>
@@ -329,26 +314,25 @@
     <span class="doccomment">/// use hotwatch::{Hotwatch, Event};</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// let mut hotwatch = Hotwatch::new().expect(&quot;Hotwatch failed to initialize.&quot;);</span>
-    <span class="doccomment">/// hotwatch.watch(&quot;README.md&quot;, |e: Event| {</span>
-    <span class="doccomment">///     if let Event::Write(path) = e {</span>
+    <span class="doccomment">/// hotwatch.watch(&quot;README.md&quot;, |event: Event| {</span>
+    <span class="doccomment">///     if let Event::Write(path) = event {</span>
     <span class="doccomment">///         println!(&quot;{:?} changed!&quot;, path);</span>
     <span class="doccomment">///     }</span>
     <span class="doccomment">/// }).expect(&quot;Failed to watch file!&quot;);</span>
     <span class="doccomment">/// ```</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">watch</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">path</span>: <span class="ident">P</span>, <span class="ident">handler</span>: <span class="ident">F</span>) <span class="op">-&gt;</span> <span class="ident">HotwatchResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span>
-    <span class="kw">where</span> <span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span>, <span class="ident">F</span>: <span class="lifetime">&#39;static</span> <span class="op">+</span> <span class="ident">Fn</span>(<span class="ident">Event</span>) <span class="op">+</span> <span class="ident">Send</span> {
+        <span class="kw">where</span> <span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span>, <span class="ident">F</span>: <span class="lifetime">&#39;static</span> <span class="op">+</span> <span class="ident">Fn</span>(<span class="ident">Event</span>) <span class="op">+</span> <span class="ident">Send</span>
+    {
         <span class="kw">let</span> <span class="ident">absolute_path</span> <span class="op">=</span> <span class="ident">canonicalize</span>(<span class="ident">path</span>)<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">handlers</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">handler_map_mutex</span>.<span class="ident">lock</span>();
         <span class="self">self</span>.<span class="ident">watcher</span>.<span class="ident">watch</span>(<span class="ident">Path</span>::<span class="ident">new</span>(<span class="kw-2">&amp;</span><span class="ident">absolute_path</span>), <span class="ident">RecursiveMode</span>::<span class="ident">Recursive</span>)
-            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="kw">match</span> <span class="ident">e</span> {
-                <span class="ident">notify</span>::<span class="ident">Error</span>::<span class="ident">Io</span>(<span class="ident">e</span>) <span class="op">=&gt;</span> <span class="ident">Error</span>::<span class="ident">Io</span>(<span class="ident">e</span>),
-                _ <span class="op">=&gt;</span> <span class="ident">Error</span>::<span class="ident">Notify</span>(<span class="ident">e</span>)
+            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="kw">match</span> <span class="ident">err</span> {
+                <span class="ident">notify</span>::<span class="ident">Error</span>::<span class="ident">Io</span>(<span class="ident">err</span>) <span class="op">=&gt;</span> <span class="ident">Error</span>::<span class="ident">Io</span>(<span class="ident">err</span>),
+                <span class="kw">_</span> <span class="op">=&gt;</span> <span class="ident">Error</span>::<span class="ident">Notify</span>(<span class="ident">err</span>),
             })
-            .<span class="ident">map</span>(<span class="op">|</span>_<span class="op">|</span> {
-                (<span class="kw-2">*</span><span class="ident">handlers</span>).<span class="ident">insert</span>(<span class="ident">PathBuf</span>::<span class="ident">from</span>(<span class="ident">absolute_path</span>), <span class="kw">box</span> <span class="ident">handler</span>);
-                <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">debug_assertions</span>) {
-                    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;HotwatchHandlers {:?}&quot;</span>, <span class="ident">handlers</span>.<span class="ident">keys</span>());
-                }
+            .<span class="ident">map</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> {
+                (<span class="kw-2">*</span><span class="ident">handlers</span>).<span class="ident">insert</span>(<span class="ident">PathBuf</span>::<span class="ident">from</span>(<span class="ident">absolute_path</span>), <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">handler</span>));
+                <span class="macro">debug</span><span class="macro">!</span>(<span class="string">&quot;HotwatchHandlers {:?}&quot;</span>, <span class="ident">handlers</span>.<span class="ident">keys</span>());
             })
     }
 
@@ -357,20 +341,13 @@
             <span class="kw">loop</span> {
                 <span class="kw">match</span> <span class="ident">rx</span>.<span class="ident">recv</span>() {
                     <span class="prelude-val">Ok</span>(<span class="ident">event</span>) <span class="op">=&gt;</span> {
-                        <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">debug_assertions</span>) {
-                            <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;HotwatchEvent {:?}&quot;</span>, <span class="ident">event</span>);
-                        }
+                        <span class="macro">debug</span><span class="macro">!</span>(<span class="string">&quot;HotwatchEvent {:?}&quot;</span>, <span class="ident">event</span>);
                         <span class="kw">let</span> <span class="ident">handlers</span> <span class="op">=</span> <span class="ident">handler_map_mutex</span>.<span class="ident">lock</span>();
                         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">mut</span> <span class="ident">path</span>) <span class="op">=</span> <span class="ident">path_from_event</span>(<span class="kw-2">&amp;</span><span class="ident">event</span>) {
                             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">handler</span> <span class="op">=</span> <span class="prelude-val">None</span>;
                             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">poppable</span> <span class="op">=</span> <span class="bool-val">true</span>;
-                            <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">debug_assertions</span>) {
-                                <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;HotwatchMatch&quot;</span>);
-                            }
                             <span class="kw">while</span> <span class="ident">handler</span>.<span class="ident">is_none</span>() <span class="op">&amp;&amp;</span> <span class="ident">poppable</span> {
-                                <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">debug_assertions</span>) {
-                                    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot; -&gt; {:?}&quot;</span>, <span class="ident">path</span>);
-                                }
+                                <span class="macro">debug</span><span class="macro">!</span>(<span class="string">&quot;HotwatchMatch {:?}&quot;</span>, <span class="ident">path</span>);
                                 <span class="ident">handler</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">handlers</span>).<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="ident">path</span>);
                                 <span class="ident">poppable</span> <span class="op">=</span> <span class="ident">path</span>.<span class="ident">pop</span>();
                             }
@@ -380,9 +357,7 @@
                         }
                     },
                     <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=&gt;</span> {
-                        <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">debug_assertions</span>) {
-                            <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Receiver error: {:?}&quot;</span>, <span class="ident">e</span>);
-                        }
+                        <span class="macro">error</span><span class="macro">!</span>(<span class="string">&quot;Receiver error: {:?}&quot;</span>, <span class="ident">e</span>);
                     }
                 }
             }
