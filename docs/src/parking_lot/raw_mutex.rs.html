@@ -10,12 +10,8 @@
     <title>raw_mutex.rs.html -- source</title>
 
     <link rel="stylesheet" type="text/css" href="../../normalize.css">
-    <link rel="stylesheet" type="text/css" href="../../rustdoc.css"
-          id="mainThemeStyle">
-    
-    <link rel="stylesheet" type="text/css" href="../../dark.css">
-    <link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle">
-    <script src="../../storage.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
     
 
     
@@ -37,13 +33,6 @@
         
     </nav>
 
-    <div class="theme-picker">
-        <button id="theme-picker" aria-label="Pick another theme!">
-            <img src="../../brush.svg" width="18" alt="Pick another theme!">
-        </button>
-        <div id="theme-choices"></div>
-    </div>
-    <script src="../../theme.js"></script>
     <nav class="sub">
         <form class="search-form js-only">
             <div class="search-container">
@@ -416,7 +405,7 @@
         {
             <span class="self">self</span>.<span class="ident">lock_slow</span>(<span class="prelude-val">None</span>);
         }
-        <span class="kw">unsafe</span> { <span class="ident">deadlock</span>::<span class="ident">acquire_resource</span>(<span class="self">self</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span> <span class="kw">as</span> <span class="ident">usize</span>) };
+        <span class="kw">unsafe</span> { <span class="ident">deadlock</span>::<span class="ident">acquire_resource</span>(<span class="self">self</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> _ <span class="kw">as</span> <span class="ident">usize</span>) };
     }
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>
@@ -432,8 +421,8 @@
                 <span class="ident">Ordering</span>::<span class="ident">Acquire</span>,
                 <span class="ident">Ordering</span>::<span class="ident">Relaxed</span>,
             ) {
-                <span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=&gt;</span> {
-                    <span class="kw">unsafe</span> { <span class="ident">deadlock</span>::<span class="ident">acquire_resource</span>(<span class="self">self</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span> <span class="kw">as</span> <span class="ident">usize</span>) };
+                <span class="prelude-val">Ok</span>(_) <span class="op">=&gt;</span> {
+                    <span class="kw">unsafe</span> { <span class="ident">deadlock</span>::<span class="ident">acquire_resource</span>(<span class="self">self</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> _ <span class="kw">as</span> <span class="ident">usize</span>) };
                     <span class="kw">return</span> <span class="bool-val">true</span>;
                 }
                 <span class="prelude-val">Err</span>(<span class="ident">x</span>) <span class="op">=&gt;</span> <span class="ident">state</span> <span class="op">=</span> <span class="ident">x</span>,
@@ -443,7 +432,7 @@
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">fn</span> <span class="ident">unlock</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">unsafe</span> { <span class="ident">deadlock</span>::<span class="ident">release_resource</span>(<span class="self">self</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span> <span class="kw">as</span> <span class="ident">usize</span>) };
+        <span class="kw">unsafe</span> { <span class="ident">deadlock</span>::<span class="ident">release_resource</span>(<span class="self">self</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> _ <span class="kw">as</span> <span class="ident">usize</span>) };
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">state</span>
             .<span class="ident">compare_exchange_weak</span>(<span class="ident">LOCKED_BIT</span>, <span class="number">0</span>, <span class="ident">Ordering</span>::<span class="ident">Release</span>, <span class="ident">Ordering</span>::<span class="ident">Relaxed</span>)
             .<span class="ident">is_ok</span>()
@@ -457,7 +446,7 @@
 <span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">RawMutexFair</span> <span class="kw">for</span> <span class="ident">ParkingLotMutex</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">fn</span> <span class="ident">unlock_fair</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">unsafe</span> { <span class="ident">deadlock</span>::<span class="ident">release_resource</span>(<span class="self">self</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span> <span class="kw">as</span> <span class="ident">usize</span>) };
+        <span class="kw">unsafe</span> { <span class="ident">deadlock</span>::<span class="ident">release_resource</span>(<span class="self">self</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> _ <span class="kw">as</span> <span class="ident">usize</span>) };
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">state</span>
             .<span class="ident">compare_exchange_weak</span>(<span class="ident">LOCKED_BIT</span>, <span class="number">0</span>, <span class="ident">Ordering</span>::<span class="ident">Release</span>, <span class="ident">Ordering</span>::<span class="ident">Relaxed</span>)
             .<span class="ident">is_ok</span>()
@@ -490,7 +479,7 @@
             <span class="self">self</span>.<span class="ident">lock_slow</span>(<span class="prelude-val">Some</span>(<span class="ident">timeout</span>))
         };
         <span class="kw">if</span> <span class="ident">result</span> {
-            <span class="kw">unsafe</span> { <span class="ident">deadlock</span>::<span class="ident">acquire_resource</span>(<span class="self">self</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span> <span class="kw">as</span> <span class="ident">usize</span>) };
+            <span class="kw">unsafe</span> { <span class="ident">deadlock</span>::<span class="ident">acquire_resource</span>(<span class="self">self</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> _ <span class="kw">as</span> <span class="ident">usize</span>) };
         }
         <span class="ident">result</span>
     }
@@ -506,7 +495,7 @@
             <span class="self">self</span>.<span class="ident">lock_slow</span>(<span class="prelude-val">Some</span>(<span class="ident">Instant</span>::<span class="ident">now</span>() <span class="op">+</span> <span class="ident">timeout</span>))
         };
         <span class="kw">if</span> <span class="ident">result</span> {
-            <span class="kw">unsafe</span> { <span class="ident">deadlock</span>::<span class="ident">acquire_resource</span>(<span class="self">self</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span> <span class="kw">as</span> <span class="ident">usize</span>) };
+            <span class="kw">unsafe</span> { <span class="ident">deadlock</span>::<span class="ident">acquire_resource</span>(<span class="self">self</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> _ <span class="kw">as</span> <span class="ident">usize</span>) };
         }
         <span class="ident">result</span>
     }
@@ -528,7 +517,7 @@
                 <span class="ident">Ordering</span>::<span class="ident">Relaxed</span>,
                 <span class="ident">Ordering</span>::<span class="ident">Relaxed</span>,
             ) {
-                <span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=&gt;</span> <span class="kw">return</span> <span class="bool-val">true</span>,
+                <span class="prelude-val">Ok</span>(_) <span class="op">=&gt;</span> <span class="kw">return</span> <span class="bool-val">true</span>,
                 <span class="prelude-val">Err</span>(<span class="ident">x</span>) <span class="op">=&gt;</span> <span class="ident">state</span> <span class="op">=</span> <span class="ident">x</span>,
             }
         }
@@ -555,7 +544,7 @@
                     <span class="ident">Ordering</span>::<span class="ident">Acquire</span>,
                     <span class="ident">Ordering</span>::<span class="ident">Relaxed</span>,
                 ) {
-                    <span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=&gt;</span> <span class="kw">return</span> <span class="bool-val">true</span>,
+                    <span class="prelude-val">Ok</span>(_) <span class="op">=&gt;</span> <span class="kw">return</span> <span class="bool-val">true</span>,
                     <span class="prelude-val">Err</span>(<span class="ident">x</span>) <span class="op">=&gt;</span> <span class="ident">state</span> <span class="op">=</span> <span class="ident">x</span>,
                 }
                 <span class="kw">continue</span>;
@@ -582,10 +571,10 @@
 
             <span class="comment">// Park our thread until we are woken up by an unlock</span>
             <span class="kw">unsafe</span> {
-                <span class="kw">let</span> <span class="ident">addr</span> <span class="op">=</span> <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span> <span class="kw">as</span> <span class="ident">usize</span>;
+                <span class="kw">let</span> <span class="ident">addr</span> <span class="op">=</span> <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> _ <span class="kw">as</span> <span class="ident">usize</span>;
                 <span class="kw">let</span> <span class="ident">validate</span> <span class="op">=</span> <span class="op">||</span> <span class="self">self</span>.<span class="ident">state</span>.<span class="ident">load</span>(<span class="ident">Ordering</span>::<span class="ident">Relaxed</span>) <span class="op">==</span> <span class="ident">LOCKED_BIT</span> <span class="op">|</span> <span class="ident">PARKED_BIT</span>;
                 <span class="kw">let</span> <span class="ident">before_sleep</span> <span class="op">=</span> <span class="op">||</span> {};
-                <span class="kw">let</span> <span class="ident">timed_out</span> <span class="op">=</span> <span class="op">|</span><span class="kw">_</span>, <span class="ident">was_last_thread</span><span class="op">|</span> {
+                <span class="kw">let</span> <span class="ident">timed_out</span> <span class="op">=</span> <span class="op">|</span>_, <span class="ident">was_last_thread</span><span class="op">|</span> {
                     <span class="comment">// Clear the parked bit if we were the last parked thread</span>
                     <span class="kw">if</span> <span class="ident">was_last_thread</span> {
                         <span class="self">self</span>.<span class="ident">state</span>.<span class="ident">fetch_and</span>(<span class="op">!</span><span class="ident">PARKED_BIT</span>, <span class="ident">Ordering</span>::<span class="ident">Relaxed</span>);
@@ -604,7 +593,7 @@
                     <span class="ident">ParkResult</span>::<span class="ident">Unparked</span>(<span class="ident">TOKEN_HANDOFF</span>) <span class="op">=&gt;</span> <span class="kw">return</span> <span class="bool-val">true</span>,
 
                     <span class="comment">// We were unparked normally, try acquiring the lock again</span>
-                    <span class="ident">ParkResult</span>::<span class="ident">Unparked</span>(<span class="kw">_</span>) <span class="op">=&gt;</span> (),
+                    <span class="ident">ParkResult</span>::<span class="ident">Unparked</span>(_) <span class="op">=&gt;</span> (),
 
                     <span class="comment">// The validation function failed, try locking again</span>
                     <span class="ident">ParkResult</span>::<span class="ident">Invalid</span> <span class="op">=&gt;</span> (),
@@ -634,7 +623,7 @@
         <span class="comment">// Unpark one thread and leave the parked bit set if there might</span>
         <span class="comment">// still be parked threads on this address.</span>
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">addr</span> <span class="op">=</span> <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span> <span class="kw">as</span> <span class="ident">usize</span>;
+            <span class="kw">let</span> <span class="ident">addr</span> <span class="op">=</span> <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> _ <span class="kw">as</span> <span class="ident">usize</span>;
             <span class="kw">let</span> <span class="ident">callback</span> <span class="op">=</span> <span class="op">|</span><span class="ident">result</span>: <span class="ident">UnparkResult</span><span class="op">|</span> {
                 <span class="comment">// If we are using a fair unlock then we should keep the</span>
                 <span class="comment">// mutex locked and hand it off to the unparked thread.</span>
@@ -663,7 +652,7 @@
     <span class="attribute">#[<span class="ident">cold</span>]</span>
     <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">never</span>)]</span>
     <span class="kw">fn</span> <span class="ident">bump_slow</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">unsafe</span> { <span class="ident">deadlock</span>::<span class="ident">release_resource</span>(<span class="self">self</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span> <span class="kw">as</span> <span class="ident">usize</span>) };
+        <span class="kw">unsafe</span> { <span class="ident">deadlock</span>::<span class="ident">release_resource</span>(<span class="self">self</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> _ <span class="kw">as</span> <span class="ident">usize</span>) };
         <span class="self">self</span>.<span class="ident">unlock_slow</span>(<span class="bool-val">true</span>);
         <span class="self">self</span>.<span class="ident">lock</span>();
     }
@@ -682,22 +671,20 @@
                 <h2>Keyboard Shortcuts</h2>
 
                 <dl>
-                    <dt><kbd>?</kbd></dt>
+                    <dt>?</dt>
                     <dd>Show this help dialog</dd>
-                    <dt><kbd>S</kbd></dt>
+                    <dt>S</dt>
                     <dd>Focus the search field</dd>
-                    <dt><kbd>↑</kbd></dt>
+                    <dt>↑</dt>
                     <dd>Move up in search results</dd>
-                    <dt><kbd>↓</kbd></dt>
+                    <dt>↓</dt>
                     <dd>Move down in search results</dd>
-                    <dt><kbd>↹</kbd></dt>
+                    <dt>↹</dt>
                     <dd>Switch tab</dd>
-                    <dt><kbd>&#9166;</kbd></dt>
+                    <dt>&#9166;</dt>
                     <dd>Go to active search result</dd>
-                    <dt><kbd>+</kbd></dt>
-                    <dd>Expand all sections</dd>
-                    <dt><kbd>-</kbd></dt>
-                    <dd>Collapse all sections</dd>
+                    <dt style="width:31px;">+ / -</dt>
+                    <dd>Collapse/expand all sections</dd>
                 </dl>
             </div>
 

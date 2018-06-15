@@ -10,12 +10,8 @@
     <title>hotwatch::Hotwatch - Rust</title>
 
     <link rel="stylesheet" type="text/css" href="../normalize.css">
-    <link rel="stylesheet" type="text/css" href="../rustdoc.css"
-          id="mainThemeStyle">
-    
-    <link rel="stylesheet" type="text/css" href="../dark.css">
-    <link rel="stylesheet" type="text/css" href="../light.css" id="themeStyle">
-    <script src="../storage.js"></script>
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
     
 
     
@@ -34,16 +30,9 @@
     <nav class="sidebar">
         <div class="sidebar-menu">&#9776;</div>
         
-        <p class='location'>Struct Hotwatch</p><div class="sidebar-elems"><div class="block items"><a class="sidebar-title" href="#methods">Methods</a><div class="sidebar-links"><a href="#method.new">new</a><a href="#method.watch">watch</a></div><a class="sidebar-title" href="#synthetic-implementations">Auto Trait Implementations</a><div class="sidebar-links"><a href="#impl-Send">Send</a><a href="#impl-Sync">Sync</a></div></div><p class='location'><a href='index.html'>hotwatch</a></p><script>window.sidebarCurrent = {name: 'Hotwatch', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script></div>
+        <p class='location'>Struct Hotwatch</p><div class="sidebar-elems"><div class="block items"><a class="sidebar-title" href="#methods">Methods</a><div class="sidebar-links"><a href="#method.new">new</a><a href="#method.watch">watch</a></div></div><p class='location'><a href='index.html'>hotwatch</a></p><script>window.sidebarCurrent = {name: 'Hotwatch', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script></div>
     </nav>
 
-    <div class="theme-picker">
-        <button id="theme-picker" aria-label="Pick another theme!">
-            <img src="../brush.svg" width="18" alt="Pick another theme!">
-        </button>
-        <div id="theme-choices"></div>
-    </div>
-    <script src="../theme.js"></script>
     <nav class="sub">
         <form class="search-form js-only">
             <div class="search-container">
@@ -55,36 +44,48 @@
         </form>
     </nav>
 
-    <section id='main' class="content"><h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>hotwatch</a>::<wbr><a class="struct" href=''>Hotwatch</a></span><span class='out-of-band'><span id='render-detail'>
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>hotwatch</a>::<wbr><a class="struct" href=''>Hotwatch</a></span><span class='out-of-band'><span id='render-detail'>
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a class='srclink' href='../src/hotwatch/lib.rs.html#52-55' title='goto source code'>[src]</a></span></h1><div class="docblock type-decl"><pre class='rust struct'>pub struct Hotwatch { /* fields omitted */ }</pre></div>
+               </span><a class='srclink' href='../src/hotwatch/lib.rs.html#52-55' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct Hotwatch { /* fields omitted */ }</pre>
                     <h2 id='methods' class='small-section-header'>
                       Methods<a href='#methods' class='anchor'></a>
                     </h2>
-                <h3 id='impl' class='impl'><span class='in-band'><table class='table-display'><tbody><tr><td><code>impl <a class="struct" href="../hotwatch/struct.Hotwatch.html" title="struct hotwatch::Hotwatch">Hotwatch</a></code><a href='#impl' class='anchor'></a></span></td><td><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/hotwatch/lib.rs.html#57-154' title='goto source code'>[src]</a></span></td></tr></tbody></table></h3><div class='impl-items'><h4 id='method.new' class="method"><span id='new.v' class='invisible'><table class='table-display'><tbody><tr><td><code>pub fn <a href='#method.new' class='fnname'>new</a>() -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;Self, <a class="enum" href="../hotwatch/enum.Error.html" title="enum hotwatch::Error">Error</a>&gt;</code></span></td><td><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/hotwatch/lib.rs.html#73-80' title='goto source code'>[src]</a></td></tr></tbody></table></span></h4><div class='docblock'><p>Creates a new hotwatch instance.</p>
-<h1 id="errors" class="section-header"><a href="#errors">Errors</a></h1>
+                <h3 id='impl' class='impl'><span class='in-band'><code>impl <a class="struct" href="../hotwatch/struct.Hotwatch.html" title="struct hotwatch::Hotwatch">Hotwatch</a></code><a href='#impl' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/hotwatch/lib.rs.html#57-154' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.new' class="method"><span id='new.v' class='invisible'><code>pub fn <a href='#method.new' class='fnname'>new</a>() -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;Self, <a class="enum" href="../hotwatch/enum.Error.html" title="enum hotwatch::Error">Error</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/hotwatch/lib.rs.html#73-80' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Creates a new hotwatch instance.</p>
+
+<h1 id='errors' class='section-header'><a href='#errors'>Errors</a></h1>
 <p>This function can fail if the underlying <a href="https://docs.rs/notify/4.0.3/notify/">notify</a>
-instance fails to initialize. This will unfortunately expose you to notify's own error
-type; hotwatch doesn't perfectly encapsulate this.</p>
-<h1 id="examples" class="section-header"><a href="#examples">Examples</a></h1>
+instance fails to initialize. This will unfortunately expose you to notify&#39;s own error
+type; hotwatch doesn&#39;t perfectly encapsulate this.</p>
+
+<h1 id='examples' class='section-header'><a href='#examples'>Examples</a></h1>
 <pre class="rust rust-example-rendered">
 <span class="kw">use</span> <span class="ident">hotwatch</span>::<span class="ident">Hotwatch</span>;
 
 <span class="kw">let</span> <span class="ident">hotwatch</span> <span class="op">=</span> <span class="ident">Hotwatch</span>::<span class="ident">new</span>().<span class="ident">expect</span>(<span class="string">&quot;Hotwatch failed to initialize.&quot;</span>);</pre>
-</div><h4 id='method.watch' class="method"><span id='watch.v' class='invisible'><table class='table-display'><tbody><tr><td><code>pub fn <a href='#method.watch' class='fnname'>watch</a>&lt;P, F&gt;(&amp;mut self, path: P, handler: F) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="../hotwatch/enum.Error.html" title="enum hotwatch::Error">Error</a>&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;P: <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/std/path/struct.Path.html" title="struct std::path::Path">Path</a>&gt;,<br>&nbsp;&nbsp;&nbsp;&nbsp;F: 'static + <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="enum" href="../hotwatch/enum.Event.html" title="enum hotwatch::Event">Event</a>) + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a>,&nbsp;</span></code></span></td><td><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/hotwatch/lib.rs.html#111-125' title='goto source code'>[src]</a></td></tr></tbody></table></span></h4><div class='docblock'><p>Watch a path and register a handler to it.</p>
+</div><h4 id='method.watch' class="method"><span id='watch.v' class='invisible'><code>pub fn <a href='#method.watch' class='fnname'>watch</a>&lt;P, F&gt;(&amp;mut self, path: P, handler: F) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="../hotwatch/enum.Error.html" title="enum hotwatch::Error">Error</a>&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;P: <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/std/path/struct.Path.html" title="struct std::path::Path">Path</a>&gt;,<br>&nbsp;&nbsp;&nbsp;&nbsp;F: 'static + <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="enum" href="../hotwatch/enum.Event.html" title="enum hotwatch::Event">Event</a>) + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a>,&nbsp;</span></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/hotwatch/lib.rs.html#111-125' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Watch a path and register a handler to it.</p>
+
 <p>When watching a directory, that handler will receive all events for all directory
 contents, even recursing through subdirectories.</p>
-<p>Only the most specific applicable handler will be called. In other words, if you're
+
+<p>Only the most specific applicable handler will be called. In other words, if you&#39;re
 watching &quot;dir&quot; and &quot;dir/file1&quot;, then only the latter handler will fire for changes to
 <code>file1</code>.</p>
-<p>Note that handlers will be run in hotwatch's watch thread, so you'll have to use <code>move</code>
+
+<p>Note that handlers will be run in hotwatch&#39;s watch thread, so you&#39;ll have to use <code>move</code>
 if the closure captures anything.</p>
-<h1 id="errors-1" class="section-header"><a href="#errors-1">Errors</a></h1>
-<p>Watching will fail if the path can't be read, thus returning
+
+<h1 id='errors-1' class='section-header'><a href='#errors-1'>Errors</a></h1>
+<p>Watching will fail if the path can&#39;t be read, thus returning
 a <code>hotwatch::Error::Io(std::io::Error)</code>.</p>
-<h1 id="examples-1" class="section-header"><a href="#examples-1">Examples</a></h1>
+
+<h1 id='examples-1' class='section-header'><a href='#examples-1'>Examples</a></h1>
 <pre class="rust rust-example-rendered">
 <span class="kw">use</span> <span class="ident">hotwatch</span>::{<span class="ident">Hotwatch</span>, <span class="ident">Event</span>};
 
@@ -94,17 +95,7 @@ a <code>hotwatch::Error::Io(std::io::Error)</code>.</p>
         <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{:?} changed!&quot;</span>, <span class="ident">path</span>);
     }
 }).<span class="ident">expect</span>(<span class="string">&quot;Failed to watch file!&quot;</span>);</pre>
-</div></div>
-            <h2 id='implementations' class='small-section-header'>
-              Trait Implementations<a href='#implementations' class='anchor'></a>
-            </h2>
-            <div id='implementations-list'>
-        </div>
-                <h2 id='synthetic-implementations' class='small-section-header'>
-                  Auto Trait Implementations<a href='#synthetic-implementations' class='anchor'></a>
-                </h2>
-                <div id='synthetic-implementations-list'>
-            <h3 id='impl-Send' class='impl'><span class='in-band'><table class='table-display'><tbody><tr><td><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> for <a class="struct" href="../hotwatch/struct.Hotwatch.html" title="struct hotwatch::Hotwatch">Hotwatch</a></code><a href='#impl-Send' class='anchor'></a></span></td><td><span class='out-of-band'></span></td></tr></tbody></table></h3><div class='impl-items'></div><h3 id='impl-Sync' class='impl'><span class='in-band'><table class='table-display'><tbody><tr><td><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> for <a class="struct" href="../hotwatch/struct.Hotwatch.html" title="struct hotwatch::Hotwatch">Hotwatch</a></code><a href='#impl-Sync' class='anchor'></a></span></td><td><span class='out-of-band'></span></td></tr></tbody></table></h3><div class='impl-items'></div></div></section>
+</div></div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
@@ -117,22 +108,20 @@ a <code>hotwatch::Error::Io(std::io::Error)</code>.</p>
                 <h2>Keyboard Shortcuts</h2>
 
                 <dl>
-                    <dt><kbd>?</kbd></dt>
+                    <dt>?</dt>
                     <dd>Show this help dialog</dd>
-                    <dt><kbd>S</kbd></dt>
+                    <dt>S</dt>
                     <dd>Focus the search field</dd>
-                    <dt><kbd>↑</kbd></dt>
+                    <dt>↑</dt>
                     <dd>Move up in search results</dd>
-                    <dt><kbd>↓</kbd></dt>
+                    <dt>↓</dt>
                     <dd>Move down in search results</dd>
-                    <dt><kbd>↹</kbd></dt>
+                    <dt>↹</dt>
                     <dd>Switch tab</dd>
-                    <dt><kbd>&#9166;</kbd></dt>
+                    <dt>&#9166;</dt>
                     <dd>Go to active search result</dd>
-                    <dt><kbd>+</kbd></dt>
-                    <dd>Expand all sections</dd>
-                    <dt><kbd>-</kbd></dt>
-                    <dd>Collapse all sections</dd>
+                    <dt style="width:31px;">+ / -</dt>
+                    <dd>Collapse/expand all sections</dd>
                 </dl>
             </div>
 
